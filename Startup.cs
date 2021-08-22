@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NomadDashboardAPI.Models;
 using UniversityManagementSystemAPI.Contexts;
 using UniversityManagementSystemAPI.Models;
 
@@ -27,6 +28,10 @@ namespace UniversityManagementSystemAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Injecting AppSettings
+            services.Configure<AppSettings>(Configuration.GetSection("ApplcationSettings"));
+
             // Database Contexts - Mudasir Ali
             services.AddDbContext<AuthContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
 
