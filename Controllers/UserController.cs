@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UniversityManagementSystemAPI.Models;
@@ -17,6 +18,25 @@ namespace UniversityManagementSystemAPI.Controllers
         public UserController(UserManager<User> userManager)
         {
             _userManager = userManager;
+        }
+
+        // This is Function will return the user by token - Mudasir Ali
+        // Route = /api/User/GetAuthenticatedUser/
+        [HttpGet]
+        [Authorize]
+        [Route("GetAuthenticatedUser")]
+        public async Task<object> GetAuthenticatedUser()
+        {
+            string userId = User.Claims.First(i => i.Type == "UserID").Value;
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return Ok(new { succeeded = false, code = "ServerError", description = "Something went wrong in Server !" });
+            }
         }
 
         // Route = /api/User/GetUserRoleByEmail/
@@ -76,11 +96,11 @@ namespace UniversityManagementSystemAPI.Controllers
             }
         }
 
-        // Route = /api/Users/GetAllUsersCount/
+        // Route = /api/Users/GetUsersCount/
         // This method will return a number of total users in DataBase
         [HttpGet]
-        [Route("GetAllUsersCount")]
-        public ActionResult GetAllUsersCount()
+        [Route("GetUsersCount")]
+        public ActionResult GetUsersCount()
         {
             try
             {
