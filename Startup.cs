@@ -12,7 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NomadDashboardAPI.Models;
 using UniversityManagementSystemAPI.Contexts;
+using UniversityManagementSystemAPI.Interfaces;
 using UniversityManagementSystemAPI.Models;
+using UniversityManagementSystemAPI.Services;
 
 namespace UniversityManagementSystemAPI
 {
@@ -34,6 +36,13 @@ namespace UniversityManagementSystemAPI
 
             // Database Contexts - Mudasir Ali
             services.AddDbContext<AuthContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<APIContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            // Dependency Injection
+            services.AddScoped<IFaculty, IFacultyService>();
+            services.AddScoped<IDepartment, IDepartmentService>();
+            services.AddScoped<ISubject, ISubjectService>();
+
 
             // Identity Core Configrations - Mudasir Ali
             services.AddIdentityCore<User>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthContext>();

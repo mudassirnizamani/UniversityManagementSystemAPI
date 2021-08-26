@@ -64,12 +64,20 @@ namespace UniversityManagementSystemAPI.Controllers
             }
         }
 
-        // Route = /api/user/GetAllUsers/
+        // Route = /api/user/GetUsers/
         [HttpGet]
-        [Route("GetAllUsers")]
-        public ActionResult GetAllUsers()
+        [Route("GetUsers")]
+        public ActionResult GetUsers()
         {
             var users = _userManager.Users;
+            return Ok(users);
+        }
+
+        [HttpGet]
+        [Route("GetDeans")]
+        public async Task<ActionResult<IEnumerable<User>>> GetDeans()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("Dean");
             return Ok(users);
         }
 
@@ -94,6 +102,16 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 return Ok(new { succeeded = false, code = "ServerError", description = "Something went wrong in Server !" });
             }
+        }
+
+        // Route = /api/User/GetUserById/
+        [HttpGet]
+        [Route("GetUserById/{id}")]
+        public async Task<ActionResult> GetUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            return Ok(user);
         }
 
         // Route = /api/Users/GetUsersCount/

@@ -1,8 +1,8 @@
 namespace UniversityManagementSystemAPI.Models
 {
-    public class DepartmentSubject
+    public class StudentOfDepartment
     {
         public string DepartmentId { get; set; }
-        public string SubjectId { get; set; }
+        public string StudentId { get; set; }
     }
 }

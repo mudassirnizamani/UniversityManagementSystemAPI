@@ -147,6 +147,45 @@ namespace UniversityManagementSystemAPI.Controllers
             }
         }
 
+        // Creating Dean User
+        // Route = /api/Auth/Dean
+        [Route("Dean")]
+        [HttpPost]
+        public async Task<ActionResult> Dean(DeanAuth model)
+        {
+            string currentDate = DateTime.Now.ToString("d/M/yyyy");
+            var user = new User()
+            {
+                CreatedAt = currentDate,
+                Email = model.Email,
+                IsActive = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ProfilePic = model.ProfilePic,
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.UserName
+            };
+            try
+            {
+                var result = await _userManager.CreateAsync(user, model.Password);
+                // To Create a new Dean Role - Mudasir Ali
+                // IdentityRole newRole = new IdentityRole()
+                // {
+                //     Name = "Dean"
+                // };
+                if (result.Succeeded)
+                {
+                    // await _roleManager.CreateAsync(newRole);
+                    var role = await _userManager.AddToRoleAsync(user, "Dean");
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { succeeded = false, error = "ServerError", description = "Something went wrong in the Server !" });
+            }
+        }
+
         // Authenticating User
         // Route = /api/Auth/Signin
         [HttpPost]

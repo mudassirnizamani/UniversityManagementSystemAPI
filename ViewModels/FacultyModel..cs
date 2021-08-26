@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UniversityManagementSystemAPI.Models
+namespace UniversityManagementSystemAPI.ViewModels
 {
-    public class Faculty
+    public class FacultyModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string Name { get; set; }
         public string DeanId { get; set; }
 
