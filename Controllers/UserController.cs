@@ -81,6 +81,23 @@ namespace UniversityManagementSystemAPI.Controllers
             return Ok(users);
         }
 
+        [HttpGet]
+        [Route("GetCourseAdvisers")]
+        public async Task<ActionResult<IEnumerable<User>>> GetCourseAdvisers()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("CourseAdviser");
+            return Ok(users);
+        }
+
+        [HttpGet]
+        [Route("GetHeadOfDepartments")]
+        public async Task<ActionResult<IEnumerable<User>>> GetHeadOfDepartments()
+        {
+            var users = await _userManager.GetUsersInRoleAsync("HeadOfDepartment");
+            return Ok(users);
+        }
+        
+
         // Route = /api/User/GetUserByUserName/
         [HttpGet]
         [Route("GetUserByUserName/{username}")]
