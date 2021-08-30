@@ -83,5 +83,13 @@ namespace UniversityManagementSystemAPI.Controllers
 
             return Ok(departments);
         }
+
+        [HttpGet]
+        [Route("GetDepartmentsCount")]
+        public ActionResult GetDepartmentsCount()
+        {
+            List<Department> departments = _departmentService.GetDepartments().ToList();
+            return Ok(departments.Count);
+        }
     }
 }

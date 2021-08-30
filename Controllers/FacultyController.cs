@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using UniversityManagementSystemAPI.Interfaces;
 using UniversityManagementSystemAPI.Models;
@@ -48,6 +49,14 @@ namespace UniversityManagementSystemAPI.Controllers
             _facultyService.DeleteFaculty(faculty);
             _facultyService.SaveChanges();
             return Ok("deleted");
+        }
+
+        [HttpGet]
+        [Route("GetFacultiesCount")]
+        public ActionResult GetFacultiesCount()
+        {
+            List<Faculty> faculties = _facultyService.GetFaculties().ToList();
+            return Ok(faculties.Count);
         }
     }
 }
