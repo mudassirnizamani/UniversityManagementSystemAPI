@@ -187,7 +187,7 @@ namespace UniversityManagementSystemAPI.Controllers
         }
 
         // Creating HeadOfDepartment User
-        // Route = /api/Auth/Dean
+        // Route = /api/Auth/HeadOfDepartment
         [Route("HeadOfDepartment")]
         [HttpPost]
         public async Task<ActionResult> HeadOfDepartment(HeadOfDepartmentAuth model)
@@ -216,6 +216,84 @@ namespace UniversityManagementSystemAPI.Controllers
                 {
                     // await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "HeadOfDepartment");
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { succeeded = false, error = "ServerError", description = "Something went wrong in the Server !" });
+            }
+        }
+
+        // Creating Admin User
+        // Route = /api/Auth/Admin
+        [Route("Admin")]
+        [HttpPost]
+        public async Task<ActionResult> Admin(HeadOfDepartmentAuth model)
+        {
+            string currentDate = DateTime.Now.ToString("d/M/yyyy");
+            var user = new User()
+            {
+                CreatedAt = currentDate,
+                Email = model.Email,
+                IsActive = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ProfilePic = model.ProfilePic,
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.UserName
+            };
+            try
+            {
+                var result = await _userManager.CreateAsync(user, model.Password);
+                // To Create a new Admin Role - Mudasir Ali
+                // IdentityRole newRole = new IdentityRole()
+                // {
+                //     Name = "Admin"
+                // };
+                if (result.Succeeded)
+                {
+                    // await _roleManager.CreateAsync(newRole);
+                    var role = await _userManager.AddToRoleAsync(user, "Admin");
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { succeeded = false, error = "ServerError", description = "Something went wrong in the Server !" });
+            }
+        }
+
+        // Creating SuperAdmin User
+        // Route = /api/Auth/SuperAdmin
+        [Route("SuperAdmin")]
+        [HttpPost]
+        public async Task<ActionResult> SuperAdmin(HeadOfDepartmentAuth model)
+        {
+            string currentDate = DateTime.Now.ToString("d/M/yyyy");
+            var user = new User()
+            {
+                CreatedAt = currentDate,
+                Email = model.Email,
+                IsActive = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ProfilePic = model.ProfilePic,
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.UserName
+            };
+            try
+            {
+                var result = await _userManager.CreateAsync(user, model.Password);
+                // To Create a new SuperAdmin Role - Mudasir Ali
+                // IdentityRole newRole = new IdentityRole()
+                // {
+                //     Name = "SuperAdmin"
+                // };
+                if (result.Succeeded)
+                {
+                    // await _roleManager.CreateAsync(newRole);
+                    var role = await _userManager.AddToRoleAsync(user, "SuperAdmin");
                 }
                 return Ok(result);
             }
