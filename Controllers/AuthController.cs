@@ -51,13 +51,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new Student Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "Student"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "Student"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "Student");
                 }
 
@@ -91,13 +91,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new CourseAdviser Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "CourseAdviser"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "CourseAdviser"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "CourseAdviser");
                 }
                 return Ok(result);
@@ -130,13 +130,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new CourseAdviser Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "ItAdministrator"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "ItAdministrator"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "ItAdministrator");
                 }
                 return Ok(result);
@@ -169,13 +169,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new Dean Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "Dean"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "Dean"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "Dean");
                 }
                 return Ok(result);
@@ -208,13 +208,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new HeadOfDepartment Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "HeadOfDepartment"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "HeadOfDepartment"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "HeadOfDepartment");
                 }
                 return Ok(result);
@@ -247,13 +247,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new Admin Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "Admin"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "Admin"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "Admin");
                 }
                 return Ok(result);
@@ -286,13 +286,13 @@ namespace UniversityManagementSystemAPI.Controllers
             {
                 var result = await _userManager.CreateAsync(user, model.Password);
                 // To Create a new SuperAdmin Role - Mudasir Ali
-                // IdentityRole newRole = new IdentityRole()
-                // {
-                //     Name = "SuperAdmin"
-                // };
+                IdentityRole newRole = new IdentityRole()
+                {
+                    Name = "SuperAdmin"
+                };
                 if (result.Succeeded)
                 {
-                    // await _roleManager.CreateAsync(newRole);
+                    await _roleManager.CreateAsync(newRole);
                     var role = await _userManager.AddToRoleAsync(user, "SuperAdmin");
                 }
                 return Ok(result);

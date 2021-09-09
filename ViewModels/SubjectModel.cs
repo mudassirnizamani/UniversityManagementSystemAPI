@@ -4,7 +4,7 @@ namespace UniversityManagementSystemAPI.Models
 {
     public class SubjectModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Name { get; set; }
+
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using UniversityManagementSystemAPI.Contexts;
 using UniversityManagementSystemAPI.Interfaces;
 using UniversityManagementSystemAPI.Models;
@@ -44,6 +46,26 @@ namespace UniversityManagementSystemAPI.Services
         public IEnumerable<Subject> GetSubjects()
         {
             return _apiContext.Subjects.ToList();
+        }
+
+        public void DeleteSubject(Subject model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            _apiContext.Subjects.Remove(model);
+        }
+
+        public void AddSubjectToDepartment(SubjectOfDepartment model)
+        {
+            _apiContext.DepartmentSubjects.Add(model);
+        }
+
+        public async Task<IEnumerable<SubjectOfDepartment>> GetDepartmentSubjectsIdsAsync(string id)
+        {
+            return await _apiContext.DepartmentSubjects.Where(x => x.DepartmentId == id).ToListAsync();
         }
     }
 }

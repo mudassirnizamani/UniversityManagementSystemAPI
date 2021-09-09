@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UniversityManagementSystemAPI.Models;
 using UniversityManagementSystemAPI.ViewModels;
 
@@ -12,6 +13,12 @@ namespace UniversityManagementSystemAPI.Interfaces
         void CreateSubject(SubjectModel model);
 
         bool SaveChanges();
+
+        void DeleteSubject(Subject model);
+
+        void AddSubjectToDepartment(SubjectOfDepartment model);
+
+        Task<IEnumerable<SubjectOfDepartment>> GetDepartmentSubjectsIdsAsync(string id);
     }
 }
 
