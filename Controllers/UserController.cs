@@ -96,6 +96,14 @@ namespace UniversityManagementSystemAPI.Controllers
             var users = await _userManager.GetUsersInRoleAsync("HeadOfDepartment");
             return Ok(users);
         }
+
+        [HttpGet]
+        [Route("GetStudents")]
+        public async Task<ActionResult<IEnumerable<User>>> GetStudents()
+        {
+            var students = await _userManager.GetUsersInRoleAsync("Student");
+            return Ok(students);
+        }
         
 
         // Route = /api/User/GetUserByUserName/

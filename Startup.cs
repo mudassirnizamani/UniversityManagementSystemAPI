@@ -42,6 +42,7 @@ namespace UniversityManagementSystemAPI
             services.AddScoped<IFaculty, IFacultyService>();
             services.AddScoped<IDepartment, IDepartmentService>();
             services.AddScoped<ISubject, ISubjectService>();
+            services.AddScoped<IResult, IResultService>();
 
 
             // Identity Core Configrations - Mudasir Ali
